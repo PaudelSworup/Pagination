@@ -8,7 +8,6 @@ import Pagination from "./Pagination";
 const Posts = () => {
   const [posts, setPosts] = useState<[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [postPerPage, setPostPerPage] = useState<number>(5);
 
   const query = useQuery(["posts"], async () => await getPosts(), {
     onSuccess: (data) => setPosts(data),
@@ -19,8 +18,8 @@ const Posts = () => {
   }
 
   //get current post
-  const indexOfLastPost = currentPage * postPerPage;
-  const indexOfFirstPost = indexOfLastPost - postPerPage;
+  const indexOfLastPost = currentPage * 5;
+  const indexOfFirstPost = indexOfLastPost - 5;
   const currentPost = posts.slice(indexOfFirstPost, indexOfLastPost);
 
   //change page
@@ -40,7 +39,7 @@ const Posts = () => {
       ))}
       <Pagination
         totalPost={posts?.length}
-        postPerPage={postPerPage}
+        postPerPage={5}
         paginate={paginate}
       />
     </div>
