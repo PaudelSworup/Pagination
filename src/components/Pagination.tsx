@@ -7,11 +7,16 @@ const Pagination: React.FC<{
 }> = ({ postPerPage, totalPost, paginate }) => {
   const pageNumbers = [];
 
+  console.log(Math.ceil(totalPost / postPerPage));
+
   for (let i = 1; i <= Math.ceil(totalPost / postPerPage); i++) {
     pageNumbers.push(i);
   }
   return (
-    <nav aria-label="Page navigation example">
+    <nav
+      aria-label="Page navigation example"
+      className="flex items-center justify-center"
+    >
       <ul className="inline-flex -space-x-px text-base h-10">
         {pageNumbers?.map((number) => (
           <li>
